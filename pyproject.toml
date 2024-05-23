@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "flask-demo"
+version = "0.1.0"
+description = ""
+authors = ["顾平安 <g332920287@foxmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+flask = "3.0.2"
+toml = "^0.10.2"
+
+[[tool.poetry.source]]
+name = "tencent-pypi"
+url = "http://mirrors.cloud.tencent.com/pypi/simple/"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
