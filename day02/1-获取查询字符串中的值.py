@@ -30,11 +30,16 @@ def get_user():
     print(parse_result)  # {'uid': ['1'], 'fav': ['edit']}
     print(request.args)  # ImmutableMultiDict([('uid', '1'), ('fav', 'edit')])
     uid = request.args.get('uid')
+    fav = request.args.get('fav')
+    print(fav)
+    faves = request.args.getlist('fav')
+    print(faves)
     if uid:
         f_user = next((user for user in users if str(user['id']) == uid), None)
         if f_user:
             return f'查询到了 {f_user}'
-    return '暂未查询到'
+        return '暂未查询到'
+    return 'UID 不存在'
 
 
 if __name__ == '__main__':
