@@ -1,0 +1,37 @@
+{% extends 'common/base.html' %}
+{% block style %}
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 2px solid darkblue;
+            width: 500px;
+        }
+        table th, table td {
+            border: 1px solid darkblue;
+            text-align: center;
+        }
+    </style>
+{% endblock style %}
+
+{% block top %}
+    <h2>{{ title }}</h2>
+    <a href="{{ url_for("index") }}">主页</a>
+{% endblock top %}
+
+{% block main %}
+    <table>
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>价格</th>
+        </tr>
+        {% for commodity in commodities %}
+            <tr>
+                <td>{{ commodity.id }}</td>
+                <td>{{ commodity.name }}</td>
+                <td>{{ commodity.price | fixed | suffix }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock main %}

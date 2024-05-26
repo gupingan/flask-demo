@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<h1>{{ title }}</h1>
+<p>年龄 = {{ age }}</p>
+{% if age >= 18 %}
+    <p>该年龄已经成年</p>
+{% else %}
+    <p>未成年请在家长的监护下观看</p>
+{% endif %}
+{# set 变量 = 值 #}
+<p>存储变量的方式
+{# verbatim 表示其内部不被解析，但是 Jinjia2 并不支持 #}
+{{ '{# set 变量 = 值 #}' }}
+</p>
+{% set score = session.get('score', 0) %}
+<p>分数 = {{ score }}</p>
+{% if score < 0 or score > 100 %}
+    <p style="color: red">不合法的分数</p>
+{% elif score < 60 %}
+    <p style="color: orange">不及格</p>
+{% elif score < 90 %}
+    <p style="color: green">挺不错，再接再厉</p>
+{% else %}
+    <p style="color: purple">十分优秀！学霸同志</p>
+{% endif %}
+</body>
+</html>

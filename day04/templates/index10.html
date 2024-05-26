@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{# 不建议直接放地址，此处模拟 CSRF 攻击便利所使用 #}
+<form action="http://127.0.0.1:9527/transfer" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    账号：<label><input type="text" name="username"></label><br>
+    密码：<label><input type="password" name="password"></label><br>
+    <input type="submit" value="转账">
+</form>
+</body>
+</html>

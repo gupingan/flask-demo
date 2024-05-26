@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<p>原形：{{ book_name }}</p>
+<p>title：{{ book_name | title }}</p>
+<p>upper：{{ book_name | upper }}</p>
+<p>reverse：{{ book_name | reverse }}</p>
+<p>链式操作：{{ book_name | upper | reverse }}</p>
+<p>striptags：{{ "<p>666</p>" | striptags }}</p>
+<p>
+    {{ "如果x<y，z>x，那么x和z之间是否相等？" | striptags }}
+</p>
+<p>truncate：{{ book_name | truncate(8) }}</p>
+<p>truncate：{{ book_name | truncate(6,True,leeway=0) }}</p>
+<p>truncate：{{ book_name | truncate(7,True,'***',0) }}</p>
+</body>
+</html>

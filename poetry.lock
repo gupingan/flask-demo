@@ -200,6 +200,30 @@ url = "http://mirrors.cloud.tencent.com/pypi/simple"
 reference = "tencent-pypi"
 
 [[package]]
+name = "flask-wtf"
+version = "1.2.1"
+description = "Form rendering, validation, and CSRF protection for Flask with WTForms."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "flask_wtf-1.2.1-py3-none-any.whl", hash = "sha256:fa6793f2fb7e812e0fe9743b282118e581fb1b6c45d414b8af05e659bd653287"},
+    {file = "flask_wtf-1.2.1.tar.gz", hash = "sha256:8bb269eb9bb46b87e7c8233d7e7debdf1f8b74bf90cc1789988c29b37a97b695"},
+]
+
+[package.dependencies]
+flask = "*"
+itsdangerous = "*"
+wtforms = "*"
+
+[package.extras]
+email = ["email-validator"]
+
+[package.source]
+type = "legacy"
+url = "http://mirrors.cloud.tencent.com/pypi/simple"
+reference = "tencent-pypi"
+
+[[package]]
 name = "idna"
 version = "3.7"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -438,6 +462,28 @@ url = "http://mirrors.cloud.tencent.com/pypi/simple"
 reference = "tencent-pypi"
 
 [[package]]
+name = "wtforms"
+version = "3.1.2"
+description = "Form validation and rendering for Python web development."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "wtforms-3.1.2-py3-none-any.whl", hash = "sha256:bf831c042829c8cdbad74c27575098d541d039b1faa74c771545ecac916f2c07"},
+    {file = "wtforms-3.1.2.tar.gz", hash = "sha256:f8d76180d7239c94c6322f7990ae1216dae3659b7aa1cee94b6318bdffb474b9"},
+]
+
+[package.dependencies]
+markupsafe = "*"
+
+[package.extras]
+email = ["email-validator"]
+
+[package.source]
+type = "legacy"
+url = "http://mirrors.cloud.tencent.com/pypi/simple"
+reference = "tencent-pypi"
+
+[[package]]
 name = "zipp"
 version = "3.18.1"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -460,4 +506,4 @@ reference = "tencent-pypi"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "6cbe6a90f0155476977bc6c39cd61b1c487b2e6b253aae365faa2c3a78abfcc2"
+content-hash = "ab17f2acc5d3aa9fa732549fc1e591204c2a417596cfed1b8cdc9d20b5bae03c"

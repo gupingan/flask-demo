@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{# 注释 #}
+{# 使用的 Jinjia2 模板引擎 #}
+<h2>基本数据类型</h2>
+<div>字符串 - {{ title }}</div>
+<div>整型 - {{ number1 }}</div>
+<div>浮点型 - {{ number2 }}</div>
+<div>布尔型 - {{ is_user }}</div>
+<h2>容器数据类型</h2>
+<div>集合 - {{ bags }}</div>
+<div>字典 - {{ info }}</div>
+<div>列表 - {{ fans }}</div>
+<div>元组 - {{ fans_tuple }}</div>
+<h2>复合数据类型</h2>
+<div>{{ fans_info }}</div>
+<div>{{ book_list }}</div>
+<h2>视图URL</h2>
+<div>user1（uid=1） - {{ url_for("user1", uid=1) }} - 路径参数情况</div>
+<div>user2（uid=2） - {{ url_for("user2", uid=2) }} - 查询参数情况</div>
+<h2>Flask部分对象</h2>
+<div>app - {{ copy_app }}</div>
+<div>config - {{ config }}</div>
+<div>request - {{ request }}</div>
+<div>g - {{ g }}</div>
+<h2>自定义对象（重写__str__方法）</h2>
+<div>User - {{ user }}</div>
+<h2>基本操作方式</h2>
+<div>字符串拼接 - {{ "这是一个神奇的" + title }}</div>
+<div>字符串累积 - {{ title * 6 }}</div>
+<div>整数算术 - {{ number1 - 1 }}</div>
+<div>浮点算术 - {{ number2 + 1.14 }}</div>
+<div>布尔算术 - {{ is_user + 1 }}</div>
+<div>集合取出元素 - {{ bags.pop() }}</div>
+<div>集合剩余 - {{ bags }}</div>
+<div>字典取值 - {{ info.name }}</div>
+<div>字典取值 - {{ info["gender"] }}</div>
+<div>列表或元组索引取值 - {{ fans[1] }} {{ fans[-1] }}</div>
+<div>列表或元组点取值 - {{ fans_tuple.0 }} 该法不支持获取负数索引</div>
+<div>列表添加元素 - {{ fans.append('二笔') }}</div>
+<div>列表添加元素后 - {{ fans }}</div>
+<div>从列表中的字典中取出指定值 - {{ fans_info[0].name }} {{ fans_info[0].age }}</div>
+<div>获取格式化后的时间 - {{ book_list[0]["released"].strftime("%Y-%m-%d %H:%M:%S") }}</div>
+<div>获取Flask Config中的值 - {{ copy_app.config["VALUE_1"] }}</div>
+<div>获取g对象中的值 - {{ g.uname }}</div>
+<div>获取自定义对象中的值 - {{ user.desc }}</div>
+</body>
+</html>

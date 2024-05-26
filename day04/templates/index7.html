@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+
+<p>自定义过滤器 1 | fixed：{{ 1 | fixed }}</p>
+<p>自定义过滤器 3.14159 | fixed：{{ 3.14159 | fixed }}</p>
+<p>自定义过滤器 0.9991 | fixed(3)：{{ 0.9991 | fixed(3) }}</p>
+<p>自定义过滤器 0.999 | suffix：{{ 0.999 | suffix }}</p>
+<p>自定义过滤器 0.999 | suffix("斤")：{{ 0.999 | suffix("斤") }}</p>
+<p>自定义过滤器 "16678789524" | hide_phone：{{ "16678789524" | hide_phone }}</p>
+<p>自定义过滤器 "16678789524" | hide_phone(6)：{{ "16678789524" | hide_phone(6) }}</p>
+<p>自定义过滤器 "16678789524" | hide_phone(9)：{{ "16678789524" | hide_phone(9) }}</p>
+<p>自定义过滤器 "16678789524" | hide_phone(9, '-')：{{ "16678789524" | hide_phone(9, '-') }}</p>
+<p>自定义过滤器 "16678789524" | hide_phone(10)：{{ "16678789524" | hide_phone(10) }}</p>
+<p>自定义过滤器 "16678789524" | hide_phone(11)：{{ "16678789524" | hide_phone(11) }}</p>
+<p>自定义过滤器 "16678789524" | hide_phone(15)：{{ "16678789524" | hide_phone(15) }}</p>
+</body>
+</html>

@@ -1,11 +1,12 @@
-import json
-from flask import Flask, request, make_response, Response, jsonify
+from pathlib import Path
+from flask import Flask
 
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
+    title = Path(__file__).name
     return 'Hello Flask'
 
 

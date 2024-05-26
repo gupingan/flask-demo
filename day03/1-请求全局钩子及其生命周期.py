@@ -32,16 +32,16 @@ def after_reqeust(response: Response):
 
 
 @app.teardown_request
-def teardown_request(exe: Exception):
+def teardown_request(exc: Exception):
     """
     当请求从栈中被弹出时，会执行（响应给客户端之后执行）
     如果有异常，则 exe 为被捕捉到的异常（视图函数和 after_request 均不再执行）
     如果没有，则 exe 为 None，视图函数和 after_request 会正常执行
     不能返回
-    :param exe:
+    :param exc:
     :return:
     """
-    print('teardown_request', exe)
+    print('teardown_request', exc)
 
 
 """

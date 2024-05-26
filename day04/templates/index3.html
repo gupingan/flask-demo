@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 800px;
+        }
+
+        table th, table td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .table-odd-row {
+            background-color: burlywood;
+        }
+
+        .table-even-row {
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th colspan="5">{{ title }}</th>
+    </tr>
+    <tr>
+        <th>序号</th>
+        <th>编号</th>
+        <th>昵称</th>
+        <th>年龄</th>
+        <th>备注</th>
+    </tr>
+    {% for fan in fans %}
+
+        <tr class="{{ loop.cycle("table-odd-row", "table-even-row") }}">
+            {% if loop.last or loop.first %}
+                <td style="font-weight: bold">
+                    {% else %}
+                <td>
+            {% endif %}
+            {{ loop.index }} {{ loop.index0 }} {{ loop.revindex }} {{ loop.revindex0 }} {{ loop.length }}</td>
+            <td>{{ fan.id }}</td>
+            <td>{{ fan.name }}</td>
+            <td>{{ fan.age }}</td>
+            {% if fan.age | int % 2 == 0 %}
+                <td>年龄是偶数</td>
+            {% else %}
+                <td>年龄是奇数，享受活动</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

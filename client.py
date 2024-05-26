@@ -130,6 +130,38 @@ class FlaskTest(unittest.TestCase):
         print(response.text)
         print(response.headers)
 
+    def test_day03_abort(self):
+        response = requests.request(self.GET, 'http://127.0.0.1:9527?password=admi1n')
+        print(response.text)
+        print(response.headers)
+
+    def test_day03_index(self):
+        response = requests.request(self.GET, 'http://127.0.0.1:9527')
+        print(response.text)
+        print(response.headers)
+
+    def test_day03_set_g_value(self):
+        response1 = requests.request(self.GET, 'http://127.0.0.1:9527/set_value/9527')
+        print(response1.text)
+        print(response1.headers)
+        response2 = requests.request(self.GET, 'http://127.0.0.1:9527/get_value')
+        print(response2.text)
+
+    def test_day03_index_template(self):
+        response = requests.request(self.GET, 'http://127.0.0.1:9527')
+        print(response.text)
+        print(response.headers)
+
+    def test_day03_render_template(self):
+        response1 = requests.request(self.GET, 'http://127.0.0.1:9527/render_template')
+        print(response1.text)
+        response2 = requests.request(self.GET, 'http://127.0.0.1:9527/render_template_string')
+        print(response2.text)
+
+    def test_day04_render_template(self):
+        response = requests.request(self.GET, 'http://127.0.0.1:9527')
+        print(response.text)
+
 
 if __name__ == '__main__':
     FlaskTest().run()

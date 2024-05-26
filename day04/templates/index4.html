@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 800px;
+        }
+
+        table th, table td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        table img {
+            max-width: 99px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th colspan="5">{{ title }}</th>
+    </tr>
+    <tr>
+        <th>编号</th>
+        <th>书名</th>
+        <th>作者</th>
+        <th>封面</th>
+        <th>价格</th>
+    </tr>
+    {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>《{{ book.title }}》</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.cover | safe }}</td>
+{#             <td>{{ "￥ %.2f" | format(book.price) }}</td>#}
+            <td>{{ "￥ %.2f" % book.price }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

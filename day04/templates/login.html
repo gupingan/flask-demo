@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% block top %}
+    <h2>{{ title }}</h2>
+	<a href="{{ url_for("index") }}">主页</a>
+{% endblock top %}
+{% block main %}
+    <form action="">
+        账号：<label>
+        <input type="text" name="username" , placeholder="请输入用户名">
+    </label><br>
+        密码：<label>
+        <input type="password" name="password" placeholder="输入密码">
+    </label><br>
+        <input type="submit" formmethod="post" value="登录">
+    </form>
+
+{% endblock main %}
