@@ -9,17 +9,28 @@ from flask import Flask
 
 app = Flask(__name__)
 
+# config = {
+#     'project_name': 'default-app',
+#     'tree': [
+#         'views.py',
+#         {
+#             'static': None,
+#             'template': []
+#         },
+#         'models.py',
+#         'urls.py',
+#         'tests.py'
+#     ]
+# }
+
 config = {
     'project_name': 'default-app',
     'tree': [
-        'views.py',
+        ['views.py', 'models.py', 'urls.py', 'tests.py'],  # 和上方效果一致
         {
             'static': None,
             'template': []
         },
-        'models.py',
-        'urls.py',
-        'tests.py'
     ]
 }
 
