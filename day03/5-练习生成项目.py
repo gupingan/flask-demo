@@ -1,4 +1,31 @@
 """
+flask --app .\5-练习生成项目.py --help
+Usage: flask [OPTIONS] COMMAND [ARGS]...
+
+  A general utility script for Flask applications.
+
+  An application to load must be given with the '--app' option, 'FLASK_APP'
+  environment variable, or with a 'wsgi.py' or 'app.py' file in the current
+  directory.
+
+Options:
+  -e, --env-file FILE   Load environment variables from this file. python-
+                        dotenv must be installed.
+  -A, --app IMPORT      The Flask application or factory function to load, in
+                        the form 'module:name'. Module can be a dotted import
+                        or file path. Name is not required if it is 'app',
+                        'application', 'create_app', or 'make_app', and can be
+                        'name(args)' to pass arguments.
+  --debug / --no-debug  Set debug mode.
+  --version             Show the Flask version.
+  --help                Show this message and exit.
+
+Commands:
+  routes    Show the routes for the app.
+  run       Run a development server.
+  shell     Run a shell in the app context.
+  startapp  Crete a project.
+
 flask --app .\5-练习生成项目.py startapp home
 > 项目`home`已生成，目录位于 D:\\study\\python-flask\\flask-demo\\day03\\home
 """
