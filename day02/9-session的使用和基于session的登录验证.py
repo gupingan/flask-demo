@@ -10,6 +10,7 @@ app.config['SECRET_KEY'] = 'asdf1234'
 @app.route('/set_session', methods=['GET', 'POST'])
 def set_session():
     # Flask 中的 session 信息是保存在浏览器客户端的，因此不建议存储敏感信息
+    # 浏览器调试终端可调用 atob 解析前半段得到原始数据
     session['username'] = '明儿'
     session['user_id'] = "101"
     return 'Hello Flask'
