@@ -10,6 +10,7 @@ class Student(db.Base):
     age = db.Column(db.SmallInteger, comment='年龄')
     class_name = db.Column('class', db.String(32), comment='班级')
     description = db.Column(db.Text)
+    description = db.Column(db.DateTime)
 
     def __repr__(self):
         return f'<Student: {self.name}>'

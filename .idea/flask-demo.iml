@@ -11,6 +11,7 @@
       <list>
         <option value="$MODULE_DIR$/day03/templates" />
         <option value="$MODULE_DIR$/day04/templates" />
+        <option value="$MODULE_DIR$/day05/7-Flask-SQLAlchemy分页查询/templates" />
       </list>
     </option>
   </component>

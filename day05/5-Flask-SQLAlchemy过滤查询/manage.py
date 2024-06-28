@@ -158,6 +158,32 @@ def filter_student():
     }), 201
 
 
+@app.route('/students/exist/<int:student_id>', methods=['GET'])
+def check_student_exist(student_id):
+    # 根据主键查询数据，不存在则为 None
+    student = db.session.get(Student, student_id)
+
+    query = Student.query.filter(Student.id == student_id).exists()
+    result = db.session.query(query).scalar()
+    print(result)
+
+    student_ = Student.query.filter(Student.id.in_([student_id])).all()
+    print(bool(student_))
+
+    if not student:
+        return jsonify({
+            'success': False,
+            'data': None,
+            'msg': 'student not found'
+        })
+
+    return jsonify({
+        'success': True,
+        'data': student.to_dict(),
+        'msg': 'success'
+    })
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.drop_all()

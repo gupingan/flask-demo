@@ -362,9 +362,470 @@ class FlaskTest(unittest.TestCase):
         response = requests.request(self.GET, 'http://127.0.0.1:9527/students/filter')
         print('调用过滤测试', response.json())
 
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/students/exist/1')
+        print('检查存在的数据', response.json())
+
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/students/exist/123')
+        print('检查不存在的数据', response.json())
+
+        response = requests.request(self.DELETE, 'http://127.0.0.1:9527/students')
+        print('清空表格数据', response.json())
+
+    def test_day05_6(self):
+        students = [
+            {
+                'name': '王毅',
+                'age': 21,
+                'sex': 1,
+                'email': 'wangyi@gmail.com',
+                'money': 4488.5
+            },
+            {
+                'name': '张晓',
+                'age': 19,
+                'sex': 0,
+                'email': 'zhangxiao@example.com',
+                'money': 2389.75
+            },
+            {
+                'name': '李春阳',
+                'age': 23,
+                'sex': 1,
+                'email': 'lichunyang@outlook.com',
+                'money': 6715.32
+            },
+            {
+                'name': '刘瑞',
+                'age': 20,
+                'sex': 0,
+                'email': 'liurui@yahoo.com',
+                'money': 3456.89
+            },
+            {
+                'name': '陈欢',
+                'age': 22,
+                'sex': 1,
+                'email': 'chenhuan@gmail.com',
+                'money': 5678.12
+            },
+            {
+                'name': '吴娜',
+                'age': 18,
+                'sex': 0,
+                'email': 'wuna@example.org',
+                'money': 1234.56
+            },
+            {
+                'name': '赵丹',
+                'age': 24,
+                'sex': 0,
+                'email': 'zhaoda@outlook.com',
+                'money': 7890.43
+            },
+            {
+                'name': '孙宇',
+                'age': 21,
+                'sex': 1,
+                'email': 'sunyu@yahoo.co.jp',
+                'money': 4567.89
+            },
+            {
+                'name': '黄宇',
+                'age': 19,
+                'sex': 1,
+                'email': 'huangyu@gmail.com',
+                'money': 2345.67
+            },
+            {
+                'name': '杨静',
+                'age': 22,
+                'sex': 0,
+                'email': 'yangjing@example.com',
+                'money': 6789.01
+            }
+        ]
+        for student in students:
+            response = requests.request(self.POST, 'http://127.0.0.1:9527/students', data=student)
+            print('添加一条记录', response.json())
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/students/data')
+        print('调用逻辑查询调试', response.text)
+        response = requests.request(self.DELETE, 'http://127.0.0.1:9527/students')
+        print('清空表格数据', response.json())
+
+    def test_day05_7(self):
+        students = [
+            {
+                'name': '王毅',
+                'age': 21,
+                'sex': 1,
+                'email': 'wangyi@gmail.com',
+                'money': 4488.5
+            },
+            {
+                'name': '张晓',
+                'age': 19,
+                'sex': 0,
+                'email': 'zhangxiao@example.com',
+                'money': 2389.75
+            },
+            {
+                'name': '李春阳',
+                'age': 23,
+                'sex': 1,
+                'email': 'lichunyang@outlook.com',
+                'money': 6715.32
+            },
+            {
+                'name': '刘瑞',
+                'age': 20,
+                'sex': 0,
+                'email': 'liurui@yahoo.com',
+                'money': 3456.89
+            },
+            {
+                'name': '陈欢',
+                'age': 22,
+                'sex': 1,
+                'email': 'chenhuan@gmail.com',
+                'money': 5678.12
+            },
+            {
+                'name': '吴娜',
+                'age': 18,
+                'sex': 0,
+                'email': 'wuna@example.org',
+                'money': 1234.56
+            },
+            {
+                'name': '赵丹',
+                'age': 24,
+                'sex': 0,
+                'email': 'zhaoda@outlook.com',
+                'money': 7890.43
+            },
+            {
+                'name': '孙宇',
+                'age': 21,
+                'sex': 1,
+                'email': 'sunyu@yahoo.co.jp',
+                'money': 4567.89
+            },
+            {
+                'name': '黄宇',
+                'age': 19,
+                'sex': 1,
+                'email': 'huangyu@gmail.com',
+                'money': 2345.67
+            },
+            {
+                'name': '杨静',
+                'age': 22,
+                'sex': 0,
+                'email': 'yangjing@example.com',
+                'money': 6789.01
+            }
+        ]
+        for student in students:
+            response = requests.request(self.POST, 'http://127.0.0.1:9527/students', data=student)
+            print('添加一条记录', response.json())
+        params = {
+            'page': 1,
+            'size': 5,
+        }
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/students/data', params=params)
+        print('调用分页查询调试', response.text)
+        # response = requests.request(self.DELETE, 'http://127.0.0.1:9527/students')
+        # print('清空表格数据', response.json())
+
+    def test_day05_8(self):
+        students = [
+            {
+                'name': '王毅',
+                'age': 21,
+                'sex': 1,
+                'email': 'wangyi@gmail.com',
+                'money': 4488.5
+            },
+            {
+                'name': '张晓',
+                'age': 19,
+                'sex': 0,
+                'email': 'zhangxiao@example.com',
+                'money': 2389.75
+            },
+            {
+                'name': '李春阳',
+                'age': 23,
+                'sex': 1,
+                'email': 'lichunyang@outlook.com',
+                'money': 6715.32
+            },
+            {
+                'name': '刘瑞',
+                'age': 20,
+                'sex': 0,
+                'email': 'liurui@yahoo.com',
+                'money': 3456.89
+            },
+            {
+                'name': '陈欢',
+                'age': 22,
+                'sex': 1,
+                'email': 'chenhuan@gmail.com',
+                'money': 5678.12
+            },
+            {
+                'name': '吴娜',
+                'age': 18,
+                'sex': 0,
+                'email': 'wuna@example.org',
+                'money': 1234.56
+            },
+            {
+                'name': '赵丹',
+                'age': 24,
+                'sex': 0,
+                'email': 'zhaoda@outlook.com',
+                'money': 7890.43
+            },
+            {
+                'name': '孙宇',
+                'age': 21,
+                'sex': 1,
+                'email': 'sunyu@yahoo.co.jp',
+                'money': 4567.89
+            },
+            {
+                'name': '黄宇',
+                'age': 19,
+                'sex': 1,
+                'email': 'huangyu@gmail.com',
+                'money': 2345.67
+            },
+            {
+                'name': '杨静',
+                'age': 22,
+                'sex': 0,
+                'email': 'yangjing@example.com',
+                'money': 6789.01
+            }
+        ]
+        for student in students:
+            response = requests.request(self.POST, 'http://127.0.0.1:9527/students', data=student)
+            print('添加一条记录', response.json())
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/students/data')
+        print('调用聚合分组调试', response.text)
+        response = requests.request(self.DELETE, 'http://127.0.0.1:9527/students')
+        print('清空表格数据', response.json())
+
+    def test_day05_9(self):
+        students = [
+            {
+                'name': '王毅',
+                'age': 21,
+                'sex': 1,
+                'email': 'wangyi@gmail.com',
+                'money': 4488.5
+            },
+            {
+                'name': '张晓',
+                'age': 19,
+                'sex': 0,
+                'email': 'zhangxiao@example.com',
+                'money': 2389.75
+            },
+            {
+                'name': '李春阳',
+                'age': 23,
+                'sex': 1,
+                'email': 'lichunyang@outlook.com',
+                'money': 6715.32
+            },
+            {
+                'name': '刘瑞',
+                'age': 20,
+                'sex': 0,
+                'email': 'liurui@yahoo.com',
+                'money': 3456.89
+            },
+            {
+                'name': '陈欢',
+                'age': 22,
+                'sex': 1,
+                'email': 'chenhuan@gmail.com',
+                'money': 5678.12
+            },
+            {
+                'name': '吴娜',
+                'age': 18,
+                'sex': 0,
+                'email': 'wuna@example.org',
+                'money': 1234.56
+            },
+            {
+                'name': '赵丹',
+                'age': 24,
+                'sex': 0,
+                'email': 'zhaoda@outlook.com',
+                'money': 7890.43
+            },
+            {
+                'name': '孙宇',
+                'age': 21,
+                'sex': 1,
+                'email': 'sunyu@yahoo.co.jp',
+                'money': 4567.89
+            },
+            {
+                'name': '黄宇',
+                'age': 19,
+                'sex': 1,
+                'email': 'huangyu@gmail.com',
+                'money': 2345.67
+            },
+            {
+                'name': '杨静',
+                'age': 22,
+                'sex': 0,
+                'email': 'yangjing@example.com',
+                'money': 6789.01
+            }
+        ]
+        for student in students:
+            requests.request(self.POST, 'http://127.0.0.1:9527/students', data=student)
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/students')
+        print('查询添加的所有数据', response.text)
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/query')
+        print('调用关联查询一对一调试', response.text)
+        response = requests.request(self.DELETE, 'http://127.0.0.1:9527/students')
+        print('清空表格数据', response.json())
+
+    def test_day05_10(self):
+        students = [
+            {
+                'name': '王毅',
+            },
+            {
+                'name': '张晓',
+            },
+            {
+                'name': '李春阳',
+            },
+            {
+                'name': '刘瑞',
+            },
+            {
+                'name': '陈欢',
+            },
+            {
+                'name': '吴娜',
+            },
+            {
+                'name': '赵丹',
+            },
+            {
+                'name': '孙宇',
+            },
+            {
+                'name': '黄宇',
+            },
+            {
+                'name': '杨静',
+            }
+        ]
+        for student in students:
+            requests.request(self.POST, 'http://127.0.0.1:9527/students', data=student)
+
+        addresses = [
+            {
+                'name': '家',
+                'province': '北京市',
+                'city': '北京市',
+                'area': '海淀区',
+                'address': '中关村大街甲28号',
+                'mobile': '13800138000',
+            },
+            {
+                'name': '家',
+                'province': '上海市',
+                'city': '上海市',
+                'area': '浦东新区',
+                'address': '张江高科路588号',
+                'mobile': '13900139000',
+            },
+            {
+                'name': '家',
+                'province': '广东省',
+                'city': '广州市',
+                'area': '天河区',
+                'address': '天河北路233号',
+                'mobile': '13700137000',
+            },
+            {
+                'name': '家',
+                'province': '浙江省',
+                'city': '杭州市',
+                'area': '西湖区',
+                'address': '文三路100号',
+                'mobile': '13600136000',
+            },
+            {
+                'name': '家',
+                'province': '四川省',
+                'city': '成都市',
+                'area': '武侯区',
+                'address': '高新区天府大道1000号',
+                'mobile': '13500135000',
+            },
+            {
+                'name': '家',
+                'province': '江苏省',
+                'city': '南京市',
+                'area': '玄武区',
+                'address': '长江路88号',
+                'mobile': '13400134000',
+            },
+            {
+                'name': '家',
+                'province': '湖北省',
+                'city': '武汉市',
+                'area': '洪山区',
+                'address': '东湖高新区珞瑜路1000号',
+                'mobile': '13300133000',
+            },
+            {
+                'name': '家',
+                'province': '福建省',
+                'city': '厦门市',
+                'area': '思明区',
+                'address': '环岛路99号',
+                'mobile': '13200132000',
+            },
+            {
+                'name': '家',
+                'province': '山东省',
+                'city': '青岛市',
+                'area': '市南区',
+                'address': '香港中路200号',
+                'mobile': '13100131000',
+            },
+            {
+                'name': '家',
+                'province': '辽宁省',
+                'city': '大连市',
+                'area': '中山区',
+                'address': '中山路123号',
+                'mobile': '13000130000',
+            }
+        ]
+        for index, address in enumerate(addresses):
+            response = requests.request(self.POST, f'http://127.0.0.1:9527/address?id={index + 1}', data=address)
+            print('添加一条地址', response.text)
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/query')
+        print('调用关联查询一对一调试', response.text)
         response = requests.request(self.DELETE, 'http://127.0.0.1:9527/students')
         print('清空表格数据', response.json())
 
 
 if __name__ == '__main__':
-    FlaskTest().run()
+    unittest.main()

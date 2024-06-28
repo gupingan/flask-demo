@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["顾平安 <g332920287@foxmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -14,6 +15,7 @@ flask-wtf = "^1.2.1"
 flask-sqlalchemy = "^3.1.1"
 pymysql = "^1.1.1"
 flask-mysqldb = "^2.0.0"
+aiomysql = "^0.2.0"
 
 [[tool.poetry.source]]
 name = "tencent-pypi"
