@@ -10,8 +10,13 @@ class Region(db.Model):
     # 在自关联关系中，SQLAlchemy 需要知道哪个字段是外键引用的远端列。
     # remote_side 参数用于明确这个引用关系。它告诉 SQLAlchemy，在这个自关联关系中，哪一侧的列是外键引用的目标。
 
-    children = db.relationship('Region', uselist=True, backref=backref('parent', uselist=False, remote_side=[id]),
-                               lazy='dynamic')
+    # 以下两种自关联关系写法等效
+    # SELECT * FROM tb_region WHERE id == 当前记录的parent_id
+    parent = db.relationship('Region', uselist=False, backref=backref('children', uselist=True, lazy='dynamic'),
+                             remote_side=[id])
+    # SELECT * FROM tb_region WHERE parent_id == 当前记录的id
+    # children = db.relationship('Region', uselist=True, backref=backref('parent', uselist=False, remote_side=[id]),
+    #                            lazy='dynamic')
 
     def to_dict(self):
         return {
