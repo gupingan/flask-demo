@@ -9,7 +9,6 @@ app.config.from_object(Config)
 db.init_app(app)
 
 
-
 @app.route('/', methods=['GET'])
 def index():
     title = Path(__file__).name
@@ -87,9 +86,8 @@ def buy_course():
 
     q = db.select(Course).where(Course.id.in_(course_ids))
     raw_courses = db.session.execute(q).scalars()
-    courses = [StudentCourse(course=course) for course in raw_courses]
-    student.to_relation.extend(courses)
-
+    courses = [StudentCourse(cid=course.id, sid=student.id) for course in raw_courses]
+    db.session.add_all(courses)
     db.session.commit()
 
     return jsonify({
@@ -118,7 +116,8 @@ def data():
         })
 
     base = student.to_dict()
-    base['courses'] = [relation.to_dict() for relation in student.to_relation.all()]
+    base['courses'] = [relation.course.to_dict() for relation in student.to_relation]
+    print(base['courses'])
 
     return jsonify({
         'success': True,

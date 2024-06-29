@@ -9,7 +9,6 @@ app.config.from_object(Config)
 db.init_app(app)
 
 
-
 @app.route('/', methods=['GET'])
 def index():
     title = Path(__file__).name
@@ -87,9 +86,8 @@ def buy_course():
 
     q = db.select(Course).where(Course.id.in_(course_ids))
     raw_courses = db.session.execute(q).scalars()
-    courses = [StudentCourse(course=course) for course in raw_courses]
-    student.to_relation.extend(courses)
-
+    courses = [StudentCourse(cid=course.id, sid=student.id) for course in raw_courses]
+    db.session.add_all(courses)
     db.session.commit()
 
     return jsonify({
@@ -117,8 +115,35 @@ def data():
             'msg': '学生不存在'
         })
 
+    # TODO 1.手动基于代码关联查询
     base = student.to_dict()
-    base['courses'] = [relation.to_dict() for relation in student.to_relation.all()]
+    q = db.select(StudentCourse.cid).where(StudentCourse.sid == sid)
+    cids = list(db.session.execute(q).scalars())
+    q = db.select(Course).where(Course.id.in_(cids))
+    courses = db.session.execute(q).scalars()
+    base['courses'] = [course.to_dict() for course in courses]
+    print(base['courses'])
+
+    # TODO 2.基于临时逻辑外键来关联查询
+    # 主模型.query.join(从模型类名, 关系语句)
+    # 主模型.query.join(从模型类名, 主模型.主键==从模型类名.外键)
+    # raw_course_ids = (Student.query.join(StudentCourse, Student.id == StudentCourse.sid)
+    #                   .with_entities(StudentCourse.cid).filter(Student.id == sid).all())
+    # course_ids = [t[0] for t in raw_course_ids]
+    # q = db.select(Course).where(Course.id.in_(course_ids))
+    # courses = db.session.execute(q).scalars()
+    # print([course.to_dict() for course in courses])
+
+    # 两个以上模型的临时逻辑外键关联
+    # Student.id 与 StudentCourse.id 比较 得到 StudentCourse 记录
+    # 再将 StudentCourse.cid 与 Course.id 比较，得到 Course 记录
+    raw_courses = Student.query.join(
+        StudentCourse, Student.id == StudentCourse.sid
+    ).join(
+        Course, StudentCourse.cid == Course.id
+    ).with_entities(Course).filter(Student.id == 3).all()
+    courses = [t.to_dict() for t in raw_courses]
+    print(courses)
 
     return jsonify({
         'success': True,
