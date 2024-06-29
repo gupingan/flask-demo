@@ -1,5 +1,5 @@
 import time
-
+import random
 import requests
 import unittest
 
@@ -825,6 +825,265 @@ class FlaskTest(unittest.TestCase):
         print('调用关联查询一对一调试', response.text)
         response = requests.request(self.DELETE, 'http://127.0.0.1:9527/students')
         print('清空表格数据', response.json())
+
+    def test_day06_1(self):
+        # 创建学生
+        students = [
+            {
+                'name': '王毅',
+                'age': 21,
+                'sex': 1,
+                'money': 4488.5
+            },
+            {
+                'name': '张晓',
+                'age': 19,
+                'sex': 0,
+                'money': 2389.75
+            },
+            {
+                'name': '李春阳',
+                'age': 23,
+                'sex': 1,
+                'money': 6715.32
+            },
+            {
+                'name': '刘瑞',
+                'age': 20,
+                'sex': 0,
+                'money': 3456.89
+            },
+            {
+                'name': '陈欢',
+                'age': 22,
+                'sex': 1,
+                'money': 5678.12
+            },
+            {
+                'name': '吴娜',
+                'age': 18,
+                'sex': 0,
+                'money': 1234.56
+            },
+            {
+                'name': '赵丹',
+                'age': 24,
+                'sex': 0,
+                'money': 7890.43
+            },
+            {
+                'name': '孙宇',
+                'age': 21,
+                'sex': 1,
+                'money': 4567.89
+            },
+            {
+                'name': '黄宇',
+                'age': 19,
+                'sex': 1,
+                'money': 2345.67
+            },
+            {
+                'name': '杨静',
+                'age': 22,
+                'sex': 0,
+                'money': 6789.01
+            }
+        ]
+        for student in students:
+            requests.request(self.POST, 'http://127.0.0.1:9527/students', data=student)
+        # 创建课程
+        courses = [
+            {
+                'name': 'Python入门',
+                'price': 102,
+            },
+            {
+                'name': 'Python初级',
+                'price': 112,
+            },
+            {
+                'name': 'Python进阶',
+                'price': 132,
+            },
+            {
+                'name': 'Python高级',
+                'price': 200,
+            },
+            {
+                'name': 'Python架构入门',
+                'price': 210,
+            }
+        ]
+        for course in courses:
+            requests.request(self.POST, f'http://127.0.0.1:9527/courses', data=course)
+        # 学生购买课程
+        for index, student in enumerate(students):
+            sid = index + 1
+            course_len = len(courses)
+            course_ids = random.choices(range(1, course_len + 1), k=random.randrange(1, course_len))
+            data = {
+                'sid': sid,
+                'course_ids': course_ids,
+            }
+            requests.request(self.POST, f'http://127.0.0.1:9527/buy', data=data)
+
+        params = {'sid': 3}
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/query', params=params)
+        print('调用关联查询', response.json())
+        response = requests.request(self.DELETE, 'http://127.0.0.1:9527/drop')
+        print('清空表格数据', response.json())
+
+    def test_day06_2(self):
+        # 创建学生
+        students = [
+            {
+                'name': '王毅',
+                'age': 21,
+                'sex': 1,
+                'money': 4488.5
+            },
+            {
+                'name': '张晓',
+                'age': 19,
+                'sex': 0,
+                'money': 2389.75
+            },
+            {
+                'name': '李春阳',
+                'age': 23,
+                'sex': 1,
+                'money': 6715.32
+            },
+            {
+                'name': '刘瑞',
+                'age': 20,
+                'sex': 0,
+                'money': 3456.89
+            },
+            {
+                'name': '陈欢',
+                'age': 22,
+                'sex': 1,
+                'money': 5678.12
+            },
+            {
+                'name': '吴娜',
+                'age': 18,
+                'sex': 0,
+                'money': 1234.56
+            },
+            {
+                'name': '赵丹',
+                'age': 24,
+                'sex': 0,
+                'money': 7890.43
+            },
+            {
+                'name': '孙宇',
+                'age': 21,
+                'sex': 1,
+                'money': 4567.89
+            },
+            {
+                'name': '黄宇',
+                'age': 19,
+                'sex': 1,
+                'money': 2345.67
+            },
+            {
+                'name': '杨静',
+                'age': 22,
+                'sex': 0,
+                'money': 6789.01
+            }
+        ]
+        for student in students:
+            requests.request(self.POST, 'http://127.0.0.1:9527/students', data=student)
+        # 创建课程
+        courses = [
+            {
+                'name': 'Python入门',
+                'price': 102,
+            },
+            {
+                'name': 'Python初级',
+                'price': 112,
+            },
+            {
+                'name': 'Python进阶',
+                'price': 132,
+            },
+            {
+                'name': 'Python高级',
+                'price': 200,
+            },
+            {
+                'name': 'Python架构入门',
+                'price': 210,
+            }
+        ]
+        for course in courses:
+            requests.request(self.POST, f'http://127.0.0.1:9527/courses', data=course)
+        # 学生购买课程
+        for index, student in enumerate(students):
+            sid = index + 1
+            course_len = len(courses)
+            course_ids = random.choices(range(1, course_len + 1), k=random.randrange(1, course_len))
+            data = {
+                'sid': sid,
+                'course_ids': course_ids,
+            }
+            requests.request(self.POST, f'http://127.0.0.1:9527/buy', data=data)
+
+        params = {'sid': 3}
+        response = requests.request(self.GET, 'http://127.0.0.1:9527/query', params=params)
+        print('调用关联查询', response.json())
+        # response = requests.request(self.DELETE, 'http://127.0.0.1:9527/drop')
+        # print('清空表格数据', response.json())
+
+    def test_day06_region(self):
+        # TODO 增加北京市、北京市规划中的朝阳区和老朝阳区
+        data = {
+            'name': '北京市',
+            'parent_id': None
+        }
+        response = requests.request(self.POST, 'http://127.0.0.1:9527/regions', data=data)
+        result1 = response.json()
+        print('添加北京市', result1)
+        data = {
+            'name': '规划中的朝阳区',
+            'parent_id': result1['id'],
+        }
+        response = requests.request(self.POST, 'http://127.0.0.1:9527/regions', data=data)
+        result2 = response.json()
+        print('添加北京市的正在规划的朝阳区', result2)
+        data = {
+            'name': '老朝阳区',
+            'parent_id': result1['id'],
+        }
+        response = requests.request(self.POST, 'http://127.0.0.1:9527/regions', data=data)
+        result3 = response.json()
+        print('添加北京市的老朝阳区', result3)
+
+        # TODO 查询现有的区域
+        response = requests.request(self.GET, f'http://127.0.0.1:9527/regions')
+        result = response.json()
+        print('查询所有区域', result)
+
+        # TODO 更新北京市规划中的朝阳区为新朝阳区
+        data = {
+            'name': '新朝阳区',
+            'parent_id': result1['id'],
+        }
+        response = requests.request(self.PUT, f'http://127.0.0.1:9527/regions/{result2["id"]}', data=data)
+        result4 = response.json()
+        print('更新原规划的朝阳区为新朝阳区', result4)
+
+        # TODO 删除北京市原有的老朝阳区
+        response = requests.request(self.DELETE, f'http://127.0.0.1:9527/regions/{result3["id"]}')
+        result5 = response.json()
+        print('删除北京市的老朝阳区', result5)
 
 
 if __name__ == '__main__':
