@@ -12,6 +12,7 @@
         <option value="$MODULE_DIR$/day03/templates" />
         <option value="$MODULE_DIR$/day04/templates" />
         <option value="$MODULE_DIR$/day05/7-Flask-SQLAlchemy分页查询/templates" />
+        <option value="$MODULE_DIR$/day07/8-蓝图的实现以及使用/users/template" />
       </list>
     </option>
   </component>
