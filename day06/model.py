@@ -10,9 +10,9 @@ class Student(db.Model):
     age = db.Column(db.SmallInteger, comment='学生年龄')
     class_ = db.Column('class', db.SMALLINT, comment='学生班级')
     description = db.Column(db.Text, comment='个性签名')
-    status = db.Column(db.Boolean, default=1, comment='登录状态')
+    status = db.Column(db.Boolean, default=True, comment='登录状态')
     addtime = db.Column(db.DateTime, default=datetime.datetime.now, comment='入学时间')
-    orders = db.Column(db.SMALLINT, default=1, comment='学生排序')
+    orders = db.Column(db.SMALLINT, default=True, comment='学生排序')
 
     def __repr__(self):
         return f'<{self.__class__.__name__}: {self.name}({self.id})>'

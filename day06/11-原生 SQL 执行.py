@@ -18,19 +18,19 @@ def run():
     print(cursor.mappings().fetchall())
 
     # DML 写入数据
-    # sql = db.text(
-    #     'insert into tb_student(name, class, age, sex, description) values(:name, :class_, :age, :sex, :description)'
-    # )
-    # data = dict(
-    #     name='李小白',
-    #     age=17,
-    #     sex=True,
-    #     class_=1,
-    #     description='大河之剑天上来',
-    # )
-    # cursor = db.session.execute(sql, params=data)
-    # db.session.commit()
-    # print(cursor.lastrowid)
+    sql = db.text(
+        'insert into tb_student(name, class, age, sex, description) values(:name, :class_, :age, :sex, :description)'
+    )
+    data = dict(
+        name='李小白',
+        age=17,
+        sex=True,
+        class_=1,
+        description='大河之剑天上来',
+    )
+    cursor = db.session.execute(sql, params=data)
+    db.session.commit()
+    print(cursor.lastrowid)
 
 
 if __name__ == '__main__':

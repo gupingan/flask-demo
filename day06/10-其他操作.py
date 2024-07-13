@@ -11,8 +11,12 @@ def run():
     # students = db.session.query(Student).filter(Student.id.in_([1, 2, 3])).limit(2).all()
     # for stu in students:
     #     print(stu.to_dict())
+    # q = db.select(Student).where(Student.id.in_([1, 2, 3])).limit(2).offset(1)
+    # students = db.session.execute(q).scalars()
+    # for stu in students:
+    #     print(stu.to_dict())
     # 排序
-    # q = db.select(Student).order_by(Student.class_.asc())
+    # q = db.select(Student).order_by(Student.class_.asc(), Student.id.asc())
     # students = db.session.execute(q).scalars()
     # for stu in students:
     #     print(stu.to_dict())

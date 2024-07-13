@@ -4,27 +4,74 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-    .page a,.page span{
-        padding: 2px 6px;
-        color: #fff;
-        background: #6666ff;
-        text-decoration: none;
-    }
-    .page span{
-        color: #fff;
-        background: orange;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+        }
 
+        table {
+            border-collapse: collapse;
+            margin: 50px auto;
+            width: 80%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e9f5ff;
+        }
+
+        .page {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .page a, .page span {
+            padding: 8px 16px;
+            margin: 0 4px;
+            color: #007bff;
+            background: #fff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .page a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .page span {
+            background-color: #007bff;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
     <table border="1" align="center" width="600">
         <tr>
            <th>ID</th>
-           <th>age</th>
-           <th>name</th>
-           <th>sex</th>
-           <th>money</th>
+           <th>Age</th>
+           <th>Name</th>
+           <th>Sex</th>
+           <th>Money</th>
         </tr>
         {% for student in pagination.items %}
         <tr>
@@ -38,7 +85,7 @@
         <tr align="center">
             <td colspan="5" class="page">
                 {% if pagination.has_prev %}
-                <a href="?page=1">首  页</a>
+                <a href="?page=1">首 页</a>
                 <a href="?page={{ pagination.page - 1 }}">上一页</a>
                 <a href="?page={{ pagination.page - 1 }}">{{ pagination.page - 1 }}</a>
                 {% endif %}
@@ -46,7 +93,7 @@
                 {% if pagination.has_next %}
                 <a href="?page={{ pagination.page + 1 }}">{{ pagination.page + 1 }}</a>
                 <a href="?page={{ pagination.page + 1 }}">下一页</a>
-                <a href="?page={{ pagination.pages }}">尾  页</a>
+                <a href="?page={{ pagination.pages }}">尾 页</a>
                 {% endif %}
             </td>
         </tr>
